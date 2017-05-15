@@ -82,6 +82,46 @@ namespace LinkedList
             return false;
         }
 
+        public bool InsertAt(int x,object obj)
+        {
+            Node Newnode = new Node() { Value = obj };
+            Node CurrentNodepos = new Node();
+            CurrentNodepos = Header;
+            if (x == 0)
+            {
+                AddFirst(obj);
+                size++;
+                return true;
+            }
+            else if (x == size - 1)
+            {
+                Add(obj);
+                size++;
+                return true;
+            }
+            else
+            {
+                int count = 0;
+                while (CurrentNodepos != null)
+                {
+
+                    if (count == x)
+                    {
+                        Node temp = new Node();
+                        temp = CurrentNodepos;
+                        Newnode.Link = CurrentNodepos.Link;
+                        temp.Link = Newnode;
+                        size++;
+                        return true;
+                    }
+                    count++;
+                    CurrentNodepos = CurrentNodepos.Link;
+                }
+            }
+
+            return false;
+        }
+
         public bool PrintAllNodes()
         {
             Node CurrentNodepos = new Node();
@@ -107,7 +147,8 @@ namespace LinkedList
             ls.Add(25);
             ls.Add(26);
             ls.Add(27);
-            ls.RemoveAt(5);
+            ls.AddFirst(20);
+            ls.InsertAt(8,30);
             ls.PrintAllNodes();
             Console.ReadLine();
         }
